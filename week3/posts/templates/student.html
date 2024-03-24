@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Student list</title>
+    </head>
+    <body>
+        <h1>저와 제 코드리뷰 짝을 소개합니다!!</h1>
+        {% for Student in student_list %}
+        <p>이름: {{Student.name}}<br />
+
+            나이: {{Student.age}}<br />
+
+            전공: {{Student.major}}<br />
+
+            깃허브: {{Student.gitid}}</p>
+        {% endfor %}
+    </body>
+</html>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse # 추가 
 from django.shortcuts import get_object_or_404 # 추가
+from .models import Student #모델에서 동적으로 받아오는 것 함수 추가
 
 # Create your views here.
 
@@ -33,3 +34,7 @@ def introduction(request):
 	]
 },json_dumps_params={'ensure_ascii': False}
 )
+
+def student_view(request):
+    student_all = Student.objects.all()
+    return render(request, 'student.html',{'student_list':student_all})
