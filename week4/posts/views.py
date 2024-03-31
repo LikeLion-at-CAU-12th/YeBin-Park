@@ -51,5 +51,5 @@ def comment_create(request,pk): #댓글을 작성하는 함수
     if comment_form.is_valid():
         comment=comment_form.save(commit=False)
         comment.posts=posts
-        comment.save()
+        comment.save();
     return redirect('posts:detail',posts.pk)
