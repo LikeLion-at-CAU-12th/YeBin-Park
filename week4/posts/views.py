@@ -35,6 +35,7 @@ def get_post_detail(request,id):
         'data' : post_detail_json
     })
 
+@require_http_methods(["GET"])
 def detail(request,pk):  #html 로 코멘트 다는것 보여주는 함수 (admin 에서 확인됨. html은 미완)
     posts=Post.object.get(pk=pk)
     comment_form=CommentForm()

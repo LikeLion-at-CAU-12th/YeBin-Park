@@ -23,6 +23,8 @@ class Post(BaseModel):
     writer = models.CharField(verbose_name="작성자", max_length=10)
     category = models.CharField(choices=CHOICES, max_length=20)
 
+    objects=models.Manager()
+
 class Comment(BaseModel):
 
     post=models.ForeignKey(Post, on_delete=models.CASCADE) #CASCADE 로 post가 삭제되면 comment도 삭제되도록 한다.
