@@ -15,3 +15,8 @@
 
 다음과 같이 admin 페이지에서 입력한 오브젝트를 동적으로 받아온다.
 ![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/0c9b71e1-5ec2-4cf8-a3f6-58503c060d8d)
+
+### week4 DB과제-> comment ERD
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/6f8b604d-ae1a-452f-b6ea-03cbdfb78bd3)
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/b981dba9-52a8-4608-9440-6704dd14da4c)
+admin 에서 확인할 수 있는 comment
