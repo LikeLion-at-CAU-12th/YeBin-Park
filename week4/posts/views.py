@@ -136,27 +136,28 @@ def comment_list(request, id):
             'data' : comment_json_filter
         },json_dumps_params={'ensure_ascii': False})
     
-    # if request.method=="POST": #댓글 생성하기
-    #     posts=Post.objects.get(pk=id)
-    #     body = json.loads(request.body.decode('utf-8'))
-    #     # 데이터 생성해주기
-    #     new_comment= Comment.objects.create(
-    #         user=body['user'],
-    #         content=body['content']
-    #     )
+    if request.method=="POST": #댓글 생성하기
+        posts=Post.objects.get(pk=id)
+        body = json.loads(request.body.decode('utf-8'))
+        # 데이터 생성해주기
+        new_comment= Comment.objects.create(
+            user=body['user'],
+            content=body['content'],
+            post_id=id
+        )
 
-    #     new_comment_json ={
-    #         'id' : new_comment.id,
-    #         'post' :posts.id,
-    #         'user' : new_comment.user,
-    #         'content': new_comment.content
-    #     }
+        new_comment_json ={
+            'id' : new_comment.id,
+            'post' :posts.id,
+            'user' : new_comment.user,
+            'content': new_comment.content
+        }
 
-    #     return JsonResponse({
-    #         'status' :200,
-    #         'message': "댓글 생성 성공",
-    #         'data' : new_comment_json
-    #     })
+        return JsonResponse({
+            'status' :200,
+            'message': "댓글 생성 성공",
+            'data' : new_comment_json
+        },json_dumps_params={'ensure_ascii': False})
     
 @require_http_methods(["GET"]) # 게시글 생성, 목록 조회
 def post_found(request):
