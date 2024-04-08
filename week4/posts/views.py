@@ -125,7 +125,8 @@ def comment_list(request, id):
             comment_json={
                 "id" : comment.id,
                 "content" :comment.content,
-                "user" :comment.user
+                "user" :comment.user,
+                "create" : comment.created_at                
             }
             comment_json_filter.append(comment_json)
         
@@ -133,7 +134,7 @@ def comment_list(request, id):
             'status' :200,
             'message': "댓글 목록 조회 성공",
             'data' : comment_json_filter
-        })
+        },json_dumps_params={'ensure_ascii': False})
     
     # if request.method=="POST": #댓글 생성하기
     #     posts=Post.objects.get(pk=id)
@@ -156,12 +157,13 @@ def comment_list(request, id):
     #         'message': "댓글 생성 성공",
     #         'data' : new_comment_json
     #     })
+    
 @require_http_methods(["GET"]) # 게시글 생성, 목록 조회
 def post_found(request):
 
     if request.method== "GET":
-        post_all= Post.objects.filter(created_at__range=['2024-04-04','2024-04-10']).order_by('created_at')
-        #post_all= Post.objects.filter(created_at__range=[date.today() - timedelta(days=6), date.today()]).orderby('created_at')
+        post_all= Post.objects.filter(created_at__range=['2024-04-04','2024-04-10']).order_by('-created_at')
+        #post_all= Post.objects.filter(created_at__range=[date.today() - timedelta(days=6), date.today()]).orderby('-created_at')
         #위 코드는 최근 일주일을 받을 수 있는코드.
 
         #JSon 형식으로 변환하여 리스트로 저장
@@ -172,7 +174,8 @@ def post_found(request):
                 "id" : post.id,
                 "title" :post.writer,
                 "content" :post.content,
-                "category" :post.category
+                "category" :post.category,
+                "create" :post.created_at
             }
             post_json_all.append(post_json)
         
@@ -180,7 +183,7 @@ def post_found(request):
             'status' :200,
             'message': "최근 게시글 목록 조회 성공",
             'data' : post_json_all
-        })
+        },json_dumps_params={'ensure_ascii': False})
 
 
 def hello_world(request):
