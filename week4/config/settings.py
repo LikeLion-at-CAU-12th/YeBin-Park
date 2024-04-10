@@ -40,7 +40,11 @@ SECRET_KEY = get_secret("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ['*'] #와일드카드로 허용. 실제 적용시엔 이름 직접적용
+=======
+ALLOWED_HOSTS = []
+>>>>>>> c8c2c0e151a43260b363ea45cc81dffa39e61954
 
 
 # Application definition
@@ -62,7 +66,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+<<<<<<< HEAD
     "corsheaders.middleware.CorsMiddleware",
+=======
+>>>>>>> c8c2c0e151a43260b363ea45cc81dffa39e61954
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -150,13 +157,18 @@ PROJECT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+<<<<<<< HEAD
     "corsheaders",
+=======
+
+>>>>>>> c8c2c0e151a43260b363ea45cc81dffa39e61954
 ]
 
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 AUTH_USER_MODEL = 'accounts.User'
+<<<<<<< HEAD
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -164,3 +176,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+=======
+>>>>>>> c8c2c0e151a43260b363ea45cc81dffa39e61954
