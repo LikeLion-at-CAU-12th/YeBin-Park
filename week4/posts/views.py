@@ -38,7 +38,7 @@ def post_list(request):
     if request.method== "GET":
         post_all= Post.objects.all()
 
-        #JSon 형식으로 변환하여 리스트로 저장
+        #JSon 형식으로 변환하여 리스트로 저장.
         post_json_all =[]
 
         for post in post_all:

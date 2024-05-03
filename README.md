@@ -53,3 +53,12 @@ Postman 에서 확인할 수 있는 날짜 범위 사이 글목록. found로 접
 </div>
 </details>
 
+***
+<details>
+<summary> week6 스탠다드 (서버 로그확인)</summary>
+<div makedown="5">
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/95f77093-d1c8-45a0-a3b3-506348e9749b)
+putty의 logging 기능을 이용해 배포한 서버가 받은 요청들을 로그로 확인하고, 파일로도 저장할 수 있었다.
+</div>
+</details>
