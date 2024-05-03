@@ -69,7 +69,6 @@ class CommentDetail(APIView):
 
 
 
-
 #DRF 적용하기 전
 # Create your views here.
 #7주차 이전 내용들
