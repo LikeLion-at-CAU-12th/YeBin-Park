@@ -6,8 +6,73 @@ from django.views.decorators.http import require_http_methods
 from .forms import CommentForm
 from .models import Post , Comment
 import json
+from .serializers import Postserializer
+from .serializers import Commentserializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.views import status
+from rest_framework import status
+from django.http import Http404
 
+class PostList(APIView):
+    def post(self,request, format=None):
+        serializer = Postserializer(data=request.data)
+        if(serializer.is_valid()):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get(self, request, format=None):
+        posts=Post.objects.all()
+        serializers=Postserializer(posts, many=True)
+        return Response(serializers.data)
+    
+
+class PostDetail(APIView):
+    def get(self, request, id):
+        post= get_object_or_404(Post, id=id)
+        serializer=Postserializer(post)
+        return Response(serializer.data)
+    
+    def put(self, request, id):
+        post=get_object_or_404(Post, id=id)
+        serializer=Postserializer(post, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, id):
+        post=get_object_or_404(Post, id=id)
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class CommentDetail(APIView):
+    def get(self, request, id): #포스트의 아이디를 받아 해당 포스트의 id 보여줌.
+        callpost=Post.objects.get(pk=id)
+        comment_filter= Comment.objects.filter(post=callpost.id)
+        serializer=Commentserializer(comment_filter, many=True)
+        return Response(serializer.data)
+
+    def post(self, request,id):
+        callpost=Post.objects.get(pk=id)
+        serializer=Commentserializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(post=callpost)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, post_id, comment_id):
+        comment=Comment.objects.filter(pk=comment_id, post_id=post_id)
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+
+#DRF 적용하기 전
 # Create your views here.
+#7주차 이전 내용들
 @require_http_methods(["POST","GET"]) # 게시글 생성, 목록 조회
 def post_list(request):
 
@@ -111,8 +176,7 @@ def post_detail(request, id):
         })
     
 
-
-
+# 코멘트 관련 함수 -> 클래스뷰로 바꿀것
 
 @require_http_methods(["GET", "POST"]) # 스탠다드 과제. 글에 해당하는 댓글목록 조회. 포스트목록조회 코드참고. 하는김에 POST까지.
 def comment_list(request, id):
@@ -158,6 +222,9 @@ def comment_list(request, id):
             'message': "댓글 생성 성공",
             'data' : new_comment_json
         },json_dumps_params={'ensure_ascii': False})
+
+
+# 완전초기 함수
     
 @require_http_methods(["GET"]) # 게시글 생성, 목록 조회
 def post_found(request):

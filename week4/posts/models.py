@@ -27,8 +27,8 @@ class Post(BaseModel):
 
 class Comment(BaseModel):
 
-    post=models.ForeignKey(Post, on_delete=models.CASCADE) #CASCADE 로 post가 삭제되면 comment도 삭제되도록 한다.
     id= models.AutoField(primary_key=True)
+    post=models.ForeignKey(Post, on_delete=models.CASCADE) #CASCADE 로 post가 삭제되면 comment도 삭제되도록 한다.
     content = models.TextField(verbose_name="내용")
     user = models.CharField(verbose_name="작성자", max_length=10)
 
