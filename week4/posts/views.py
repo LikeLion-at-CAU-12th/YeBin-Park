@@ -68,7 +68,6 @@ class CommentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-
 #DRF 적용하기 전
 # Create your views here.
 #7주차 이전 내용들
