@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from accounts.models import User
 
 ## 추상 클래스 정의
 class BaseModel(models.Model):
@@ -20,7 +21,7 @@ class Post(BaseModel):
     id = models.AutoField(primary_key=True)
     title = models.CharField(verbose_name="제목", max_length=20)
     content = models.TextField(verbose_name="내용")
-    writer = models.CharField(verbose_name="작성자", max_length=10)
+    writer = models.ForeignKey(User, on_delete=models.SET_NULL, db_column="writer", null=True)
     category = models.CharField(choices=CHOICES, max_length=20)
 
     objects=models.Manager()
