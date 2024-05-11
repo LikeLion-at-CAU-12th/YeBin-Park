@@ -65,7 +65,7 @@ putty의 logging 기능을 이용해 배포한 서버가 받은 요청들을 로
 
 ***
 <details>
-<summary> week9 스탠다드 </summary>
+<summary> week7 스탠다드 </summary>
 <div markdown="6">
 
 ![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/f087fa21-0556-4f53-bb5c-62e44952a15b)
@@ -76,5 +76,27 @@ get 으로 해당글에 달린 여러 댓글을 한번에 확인가능합니다.
 
 ![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/8315dae0-caea-4d8b-887f-e2c577beac1a)
 delete 기능으로 삭제하여 남은 댓글만 확인해봤습니다.
+</div>
+</details>
+
+***
+<details>
+<summary> week8 스탠다드 </summary>
+<div markdown="7">
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/cd00eb69-bcf3-47e8-892c-0666c7f36a91)
+header 에 지정해준 Key-value 를 올바르게 받았을 경우에 POST 가 가능합니다.
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/4b3f8c17-ab81-4b17-8d1c-6c941e9dfd36)
+올바르게 받지 않았을 경우 메소드 접근이 불가합니다.
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/7bf345b3-7866-443f-bfed-bdcab410dd6e)
+작성자인 경우에 글 삭제및 수정이 가능합니다. (204확인, user.id 및 writer 가 2 인 상태.)
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/ccb5e6f5-2e8e-48c0-afe2-9f6a27266ca5)
+작성자가 아닌경우 작성자만 가능하다고 뜹니다.
+Key 를 받지 않았을 경우도 다시 위로 돌아가 메소드 접근이 불가하다고 뜹니다.
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/fbabe6a7-8352-4570-bf23-b1b3fdeeabf2)
+
 </div>
 </details>
