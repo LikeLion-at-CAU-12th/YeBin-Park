@@ -65,6 +65,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
+    "allauth.account.middleware.AccountMiddleware", 
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -156,7 +157,10 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "rest_framework",
     "rest_framework_simplejwt",
-
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
 ]
 
 
@@ -187,3 +191,6 @@ SIMPLE_JWT = {
     'TOKEN_USER_CLASS': 'accounts.User',
 }
 
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED= True
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # 11주차 소셜로그인
