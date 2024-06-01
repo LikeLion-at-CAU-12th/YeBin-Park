@@ -100,3 +100,20 @@ Key 를 받지 않았을 경우도 다시 위로 돌아가 메소드 접근이 �
 
 </div>
 </details>
+
+***
+<details>
+<summary>week9스탠다드 </summary>
+<div markdown="8">
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/be29ae8c-0ba9-4611-8060-0f26fe38421e)
+allauth 로 Socialaccount의 provider 가 올바른지 확인합니다. (admin에서 naver 로 설정했을경우)
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/0e77c9b5-1ba5-44d5-b2f3-9b3aee0055c1)
+User 가 존재하지 않을때 (except User.DoesNotExist)회원가입 /join으로 연결시킵니다.
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/af47a8a1-009a-4ccd-b664-543b30e9ed13)
+admin에서 확인한 결과 Socialaccount가 생성된것을 볼 수 있습니다.(User 먼저 생성됨. id 가져오고 이름은 이메일의 이름 따오기로 함.)
+
+</div>
+</details>
