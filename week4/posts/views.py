@@ -13,12 +13,18 @@ from rest_framework.views import APIView
 from rest_framework.views import status
 from rest_framework import status
 from django.http import Http404
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from config.permissions import CombinedPermission
+from config.permissions import IsKey
+from rest_framework.decorators import api_view, permission_classes
 
+@permission_classes([IsKey])
 class PostList(APIView):
+    
     def post(self,request, format=None):
         serializer = Postserializer(data=request.data)
         if(serializer.is_valid()):
-            serializer.save()
+            serializer.save(writer=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
@@ -27,8 +33,11 @@ class PostList(APIView):
         serializers=Postserializer(posts, many=True)
         return Response(serializers.data)
     
+    
 
 class PostDetail(APIView):
+    permission_classes =[CombinedPermission]
+
     def get(self, request, id):
         post= get_object_or_404(Post, id=id)
         serializer=Postserializer(post)
@@ -39,15 +48,23 @@ class PostDetail(APIView):
         serializer=Postserializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            if request.user == post.writer:
+                return Response(serializer.data)
+            else:
+                return Response ({"detail":"작성자만 수정가능"})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def delete(self, request, id):
         post=get_object_or_404(Post, id=id)
-        post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user==post.writer:
+            post.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        else:
+            return Response({"detail": "작성자만 삭제할 수 있습니다"})
 
 class CommentDetail(APIView):
+
+    permission_classes=[IsKey]
     def get(self, request, id): #포스트의 아이디를 받아 해당 포스트의 id 보여줌.
         callpost=Post.objects.get(pk=id)
         comment_filter= Comment.objects.filter(post=callpost.id)
