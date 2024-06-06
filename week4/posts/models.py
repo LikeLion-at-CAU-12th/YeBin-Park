@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from accounts.models import User
+import boto3
 
 ## 추상 클래스 정의
 class BaseModel(models.Model):
@@ -23,6 +24,7 @@ class Post(BaseModel):
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, db_column="writer", null=True)
     category = models.CharField(choices=CHOICES, max_length=20)
+    thumbnail = models.ImageField(null=True, blank=True, verbose_name="썸네일") #필로우 깔아줘서 이미지필드 사용가능
 
     objects=models.Manager()
 
