@@ -118,6 +118,8 @@ admin에서 확인한 결과 Socialaccount가 생성된것을 볼 수 있습니�
 </div>
 </details>
 
+***
+
 <details>
 <summary>week10 스탠다드 </summary>
 <div markdown="9">
