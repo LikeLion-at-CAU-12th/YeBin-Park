@@ -17,6 +17,10 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from config.permissions import CombinedPermission
 from config.permissions import IsKey
 from rest_framework.decorators import api_view, permission_classes
+import boto3
+from django.conf import settings
+import urllib.parse
+
 
 @permission_classes([IsKey])
 class PostList(APIView):
@@ -25,6 +29,18 @@ class PostList(APIView):
         serializer = Postserializer(data=request.data)
         if(serializer.is_valid()):
             serializer.save(writer=request.user)
+            thumbnail_file = request.data.get('thumbnail')
+            # s3_client = boto3.client(
+            #     's3',
+            #     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+            #     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+            #     region_name=settings.AWS_REGION
+            # )
+            object_name =thumbnail_file.name
+            # s3_client.upload_fileobj(thumbnail_file, settings.AWS_STORAGE_BUCKET_NAME, object_name)
+            thumbnail_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{object_name}"
+            # 모델에 저장
+            serializer.save(thumbnail=thumbnail_url)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

@@ -117,3 +117,25 @@ admin에서 확인한 결과 Socialaccount가 생성된것을 볼 수 있습니�
 
 </div>
 </details>
+
+***
+
+<details>
+<summary>week10 스탠다드 </summary>
+<div markdown="9">
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/06def267-74bd-4f73-a610-115a0fb0469a)
+png 파일 업로드 시 serializer validate 에서 불가하다고 error 를 반환해줍니다
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/bfd483ad-fc63-402c-a0a2-d156ec14baae)
+View 함수에서 Datagrip 에 url이 저장되도록 바꿔줬습니다. Datagrip 에 이미지 이름 S3 url 로 저장된 모습.
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/fd9b6b8d-6f3d-4a16-8798-656260b2f1ab)
+해당 이미지 링크를 클릭하면 다음과같이 S3 의 이미지 화면으로 이동합니다.
+
+![image](https://github.com/LikeLion-at-CAU-12th/YeBin-Park/assets/114918259/0dfdc757-c2df-4926-97e6-3be61b6f2906)
+마지막으로 당연히 S3 버킷에도 이미지파일이 생성된걸 확인할 수 있습니다.
+
+
+</div>
+</details>
